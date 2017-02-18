@@ -15,5 +15,5 @@
   "license": "ISC",
   "dependencies": {
     "node-hid": "^0.5.4"
-  },
+  }
 }
