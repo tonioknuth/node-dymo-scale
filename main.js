@@ -1,6 +1,6 @@
 var HID = require("node-hid");
 
-DymoScale = class DymoScale {
+module.exports = class DymoScale {
     constructor(stream,sensitivity) {
         this.connect();
         this.weight = 0;
