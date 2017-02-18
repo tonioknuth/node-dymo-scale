@@ -1,0 +1,19 @@
+{
+  "name": "node-dymo-scale",
+  "version": "1.0.0",
+  "description": "A node wrapper for dymo usb scales",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "dymo",
+    "scale",
+    "events"
+  ],
+  "author": "Tonio Knuth",
+  "license": "ISC",
+  "dependencies": {
+    "node-hid": "^0.5.4"
+  },
+}
