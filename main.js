@@ -6,6 +6,7 @@ module.exports = class DymoScale {
         this.weight_cache = [];
         this.sensitvity = sensitivity || 5
         this.is_connected = false
+        this.reconnecting = false;
     }
     launch(){
       this.connect()
@@ -13,16 +14,18 @@ module.exports = class DymoScale {
       this.attachListeners();
     }
     tryReconnecting(){
-      this.is_connected = false;
-      setTimeout(()=>{
-        if(this.connect()){
-          this.startInputStream();
-          this.attachListeners();
-        }else{
-          this.tryReconnecting();
-        }
-      },1000);
-    }
+    this.is_connected = false;
+    this.reconnecting = true;
+    setTimeout(()=>{
+      if(this.connect()){
+        this.reconnecting = false;
+        this.startInputStream();
+        this.attachListeners();
+      }else{
+        this.tryReconnecting();
+      }
+    },1000);
+  }
     connect() {
 
         var usbdevices = usb.getDeviceList();
@@ -97,7 +100,9 @@ module.exports = class DymoScale {
       //error handler
       this.endpoint.on("error",(err)=>{
         console.log(err);
+        if(!this.reconnecting){
         this.tryReconnecting();
+        }
       });
       }
     }
