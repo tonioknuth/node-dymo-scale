@@ -14,7 +14,6 @@
   "author": "Tonio Knuth",
   "license": "ISC",
   "dependencies": {
-    "node-hid": "^0.5.4",
     "usb": "^1.2.0"
   }
 }
